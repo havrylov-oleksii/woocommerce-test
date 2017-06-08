@@ -96,7 +96,7 @@
 										<?php $prod_cat_slugs[] = $term_obj->slug; ?>
                                         <li <?php if ( $counter < 1 )
 											echo 'class="active"' ?>>
-                                            <a href="#<?php echo $term_obj->slug; ?>"
+                                            <a href="#<?php echo 'tab_' . $counter ?>"
                                                data-toggle="tab"><?php echo $term_obj->name; ?></a>
                                         </li>
 										<?php $counter ++; ?>
@@ -111,7 +111,7 @@
                                     <div class="tab-pane fade<?php if ( $counter < 1 ) {
 										echo ' active in';
 									} ?>"
-                                         id="<?php echo $slug; ?>">
+                                         id="<?php echo 'tab_' . $counter ?>">
 										<?php $query = new WP_Query( array(
 											'post_type'      => 'product',
 											'posts_per_page' => 4,
@@ -136,7 +136,7 @@
                                                                 <h2><?php echo $product->get_price_html(); ?></h2>
                                                                 <p><?php echo $product->get_title(); ?></p>
                                                                 <a href="<?php echo do_shortcode( '[add_to_cart_url id=' . get_the_id() . ']' ); ?>"
-                                                                   class="btn btn-default add-to-cart"><i
+                                                                   class="btn btn-default add-to-cart ajax_add_to_cart"><i
                                                                             class="fa fa-shopping-cart"></i>Add to cart</a>
                                                             </div>
 
@@ -173,7 +173,7 @@
 											}
 
 										}
-									     ?>
+										?>
                                         <div class="item<?php echo ( $counter < 1 ) ? ' active' : ''; ?>">
 											<?php foreach ( $recommended_products as $p_id => $recommended ): ?>
                                                 <div class="col-sm-4">
