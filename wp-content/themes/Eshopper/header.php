@@ -48,7 +48,7 @@
                 <div class="col-sm-4">
                     <div class="logo pull-left">
                         <a href="<?php echo home_url(); ?>"><img
-                                    src="<?php bloginfo( 'template_url' ); ?>/images/home/logo.png" alt=""/></a>
+                                    src="<?php bloginfo( 'template_url' ); ?>/assets/images/home/logo.png" alt=""/></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">

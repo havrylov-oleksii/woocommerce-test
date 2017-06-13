@@ -65,22 +65,25 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">Features Items</h2>
-						<?php
-						$args = array(
-							'post_type'      => 'product',
-							'posts_per_page' => 6,
-							'orderby'        => 'rand'
-						);
-						$loop = new WP_Query( $args );
-						if ( $loop->have_posts() ) {
-							while ( $loop->have_posts() ) : $loop->the_post();
-								wc_get_template_part( 'content', 'product' );
-							endwhile;
-						} else {
-							echo __( 'No products found' );
-						}
-						wp_reset_postdata();
-						?>
+                        <div class="items-container">
+							<?php
+							$args = array(
+								'post_type'      => 'product',
+								'posts_per_page' => 6,
+								'orderby'        => 'rand'
+							);
+							$loop = new WP_Query( $args );
+							if ( $loop->have_posts() ) {
+								while ( $loop->have_posts() ) : $loop->the_post();
+									wc_get_template_part( 'content', 'product' );
+								endwhile;
+							} else {
+								echo __( 'No products found' );
+							}
+							wp_reset_postdata();
+							?>
+                        </div>
+
 
                     </div><!--features_items-->
 
@@ -131,7 +134,7 @@
                                                     <div class="product-image-wrapper">
                                                         <div class="single-products">
                                                             <div class="productinfo text-center">
-                                                                <img src="<?php bloginfo( 'template_url' ); ?>/images/home/gallery1.jpg"
+                                                                <img src="<?php bloginfo( 'template_url' ); ?>/assets/images/home/gallery1.jpg"
                                                                      alt=""/>
                                                                 <h2><?php echo $product->get_price_html(); ?></h2>
                                                                 <p><?php echo $product->get_title(); ?></p>
@@ -180,7 +183,7 @@
                                                     <div class="product-image-wrapper">
                                                         <div class="single-products">
                                                             <div class="productinfo text-center">
-                                                                <img src="<?php bloginfo( 'template_url' ); ?>/images/home/recommend3.jpg"
+                                                                <img src="<?php bloginfo( 'template_url' ); ?>/assets/images/home/recommend3.jpg"
                                                                      alt=""/>
                                                                 <h2><?php echo $recommended->get_price_html(); ?></h2>
                                                                 <p><?php echo $recommended->get_title(); ?></p>

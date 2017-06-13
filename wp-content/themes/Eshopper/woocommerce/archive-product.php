@@ -24,7 +24,7 @@ get_header('shop'); ?>
 
 <section id="advertisement">
     <div class="container">
-        <img src="<?php bloginfo('template_url') ?>/images/shop/advertisement.jpg" alt=""/>
+        <img src="<?php bloginfo('template_url') ?>/assets/images/shop/advertisement.jpg" alt=""/>
     </div>
 </section>
 
