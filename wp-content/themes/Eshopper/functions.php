@@ -2,11 +2,10 @@
 include_once 'extras/woo-functions.php';
 include_once 'classes/categories-list-widget.php';
 include_once 'classes/brands-list-widget.php';
-include_once 'classes/price-range-widget.php';
 include_once 'classes/BottomMenuWalker.php';
 
 add_theme_support( 'woocommerce' );
-define( 'WOOCOMMERCE_USE_CSS', false );
+//define( 'WOOCOMMERCE_USE_CSS', false );
 
 
 /**
@@ -38,8 +37,12 @@ add_filter( 'wp_nav_menu_objects', 'menu_set_dropdown', 10, 2 );
  */
 function theme_register_nav_menu() {
 	register_nav_menus( array(
-		'header-middle' => 'Middle Menu',
-		'header-bottom' => 'Bottom Menu'
+		'header-middle'   => 'Middle Menu',
+		'header-bottom'   => 'Bottom Menu',
+		'footer-services' => 'Service',
+		'footer-quick'    => 'Quick Shop',
+		'footer-policies' => 'Policies',
+		'footer-about'    => 'About Shopper',
 	) );
 }
 
@@ -96,6 +99,21 @@ function footer_settings_init() {
 	}
 }
 
+/**
+ * Registering header options page
+ */
+add_action( 'acf/init', 'header_settings_init' );
+
+function header_settings_init() {
+	if ( function_exists( 'acf_add_options_page' ) ) {
+		$option_page = acf_add_options_page( array(
+			'page_title' => __( 'Header Settings', 'shop' ),
+			'menu_title' => __( 'Header Settings', 'shop' ),
+			'menu_slug'  => 'header-settings',
+		) );
+	}
+}
+
 
 function session_init() {
 	if ( ! session_id() ) {
@@ -115,11 +133,13 @@ add_action( 'wp_login', 'session_destruct' );
 
 
 function before_product_update( $pid ) {
-	global $wpdb;
-	$first_term  = wp_get_post_terms( $pid, 'product_cat' )[0];
-	$second_term = wp_get_post_terms( $pid, 'brand' )[0];
-	if ( isset( $first_term ) && isset( $second_term ) ) {
-		$_SESSION['terms'] = array( 'product_cat' => $first_term, 'brand' => $second_term );
+	if ( get_post_type( $pid ) == 'product' ) {
+		global $wpdb;
+		$first_term  = wp_get_post_terms( $pid, 'product_cat' )[0];
+		$second_term = wp_get_post_terms( $pid, 'brand' )[0];
+		if ( isset( $first_term ) && isset( $second_term ) ) {
+			$_SESSION['terms'] = array( 'product_cat' => $first_term, 'brand' => $second_term );
+		}
 	}
 }
 

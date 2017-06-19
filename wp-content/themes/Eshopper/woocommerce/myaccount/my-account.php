@@ -20,20 +20,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-wc_print_notices();
+wc_print_notices(); ?>
+<section id="account"><! -- form-->
+    <div class="container">
+        <div class="row">
+			<?php
+			/**
+			 * My Account navigation.
+			 * @since 2.6.0
+			 */
+			do_action( 'woocommerce_account_navigation' ); ?>
 
-/**
- * My Account navigation.
- * @since 2.6.0
- */
-do_action( 'woocommerce_account_navigation' ); ?>
-
-<div class="woocommerce-MyAccount-content">
-	<?php
-		/**
-		 * My Account content.
-		 * @since 2.6.0
-		 */
-		do_action( 'woocommerce_account_content' );
-	?>
-</div>
+            <div class="woocommerce-MyAccount-content">
+				<?php
+				/**
+				 * My Account content.
+				 * @since 2.6.0
+				 */
+				do_action( 'woocommerce_account_content' );
+				?>
+            </div>
+        </div>
+    </div>
+</section>

@@ -138,9 +138,12 @@
                                                                      alt=""/>
                                                                 <h2><?php echo $product->get_price_html(); ?></h2>
                                                                 <p><?php echo $product->get_title(); ?></p>
+																<?php get_template_part( 'loop/add-to-cart' ) ?>
                                                                 <a href="<?php echo do_shortcode( '[add_to_cart_url id=' . get_the_id() . ']' ); ?>"
-                                                                   class="btn btn-default add-to-cart ajax_add_to_cart"><i
-                                                                            class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                                   class="btn btn-default add-to-cart ajax_add_to_cart"
+                                                                   data-product-id="<?php echo get_the_id() ?>"><i
+                                                                            class="fa fa-shopping-cart"></i>Add
+                                                                    to cart</a>
                                                             </div>
 
                                                         </div>
@@ -188,7 +191,7 @@
                                                                 <h2><?php echo $recommended->get_price_html(); ?></h2>
                                                                 <p><?php echo $recommended->get_title(); ?></p>
                                                                 <a href="<?php echo do_shortcode( '[add_to_cart_url id=' . $p_id . ']' ); ?>"
-                                                                   class="btn btn-default add-to-cart"><i
+                                                                   class="btn btn-default add-to-cart add-to-cart-button"><i
                                                                             class="fa fa-shopping-cart"></i>Add to cart</a>
                                                             </div>
                                                         </div>

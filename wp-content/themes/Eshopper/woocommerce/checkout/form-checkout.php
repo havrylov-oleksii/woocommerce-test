@@ -123,18 +123,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
                         <td class="cart_quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
 							<?php
-							if ( $_product->is_sold_individually() ) {
-								$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
-							} else {
-								$product_quantity = woocommerce_quantity_input( array(
-									'input_name'  => "cart[{$cart_item_key}][qty]",
-									'input_value' => $cart_item['quantity'],
-									'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
-									'min_value'   => '0',
-								), $_product, false );
-							}
-
-							echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
+							echo '<span>' . $cart_item['quantity'] . '</span>';
 							?>
                         </td>
 
@@ -144,11 +133,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 								?></p>
                         </td>
 
-                        <td class="cart_delete">
-							<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="cart_quantity_delete" aria-label="%s" data-product_id="%s" data-product_sku="%s"><i class="fa fa-times"></i></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ), esc_attr( $product_id ), esc_attr( $_product->get_sku() ) ), $cart_item_key );
-							?>
-                        </td
                     </tr>
 					<?php
 				}

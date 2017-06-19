@@ -2432,4 +2432,60 @@ h2.title {
     color: #FE980F;
 }
 
+/****************************SHARE LINKS*******************************/
 
+.socials-share a {
+    font-size: 35px;
+    margin: 0 3px;
+}
+
+.socials-share .fa {
+    color: #FE980F;
+    transition: color 0.3s;
+}
+
+.fa-facebook-square:hover {
+    color: #3b5998;
+}
+
+.fa-twitter-square:hover {
+    color: #00aced;
+}
+
+.fa-google-plus-square:hover {
+    color: #d34836;
+}
+
+.fa-linkedin-square:hover {
+    color: #0077b5;
+}
+
+.fa-pinterest-square:hover {
+    color: #C92228;
+}
+
+/****************************SHARE LINKS*******************************/
+
+/****************************WOOCOMMERCE*******************************/
+
+.woocommerce-MyAccount-navigation-link {
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.woocommerce-MyAccount-navigation-link a {
+    transition: color 0.5s;
+    color: #696763;
+}
+
+.woocommerce-MyAccount-navigation-link a:hover {
+    color: #fdb45e;
+}
+
+.woocommerce-MyAccount-navigation ul {
+    padding: 0;
+}
+
+.woocommerce-MyAccount-navigation {
+    margin-bottom: 20px;
+}

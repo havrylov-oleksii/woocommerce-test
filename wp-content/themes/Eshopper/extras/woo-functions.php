@@ -110,6 +110,9 @@ function content_product_actions() {
 	remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
 	add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
 	add_action( 'woocommerce_shop_loop_item_title', 'product_title' );
+
+	remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+	add_action( 'sale_flag', 'woocommerce_show_product_loop_sale_flash', 10 );
 }
 
 add_action( 'init', 'content_product_actions' );
@@ -146,6 +149,11 @@ function after_list_item_output() {
 			<?php get_template_part( 'woocommerce/loop/add-to-cart' ); ?>
         </div>
     </div>
+	<?php if ( 604800 > ( time() - get_post_time( 'U', true, get_the_ID() ) ) ): ?>
+        <img src="<?php bloginfo( 'template_url' ) ?>/assets/images/home/new.png" class="new" alt=""/>
+	<?php else: ?>
+		<?php do_action( 'sale_flag' ); ?>
+	<?php endif; ?>
     </div>
     <div class="choose">
         <ul class="nav nav-pills nav-justified">
@@ -281,9 +289,13 @@ function custom_override_checkout_fields( $fields ) {
 		'clear'       => true
 	);
 	foreach ( $fields['billing'] as $key => $field ) {
-		$fields['billing'][ $key ]['placeholder'] = $fields['billing'][ $key ]['label'];
-		$fields['billing'][ $key ]['class']       = array( 'form-row-wide' );
-		unset( $fields['billing'][ $key ]['label'] );
+		if ( ! isset( $field['label'] ) ) {
+			$fields['billing'][ $key ]['placeholder'] = 'Second Address';
+		} else {
+			$fields['billing'][ $key ]['placeholder'] = $fields['billing'][ $key ]['label'];
+			$fields['billing'][ $key ]['class']       = array( 'form-row-wide' );
+			unset( $fields['billing'][ $key ]['label'] );
+		}
 	}
 
 	return $fields;
@@ -314,10 +326,10 @@ function custom_override_account_fields( $fields ) {
 
 
 function my_custom_checkout_field_display_admin_order_meta( $order ) {
-	echo '<p><strong>' . __( 'Mobile Phone From Checkout Form' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_mobile', true ) . '</p>';
-	echo '<p><strong>' . __( 'Title From Checkout Form' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_title', true ) . '</p>';
-	echo '<p><strong>' . __( 'Middle Name Phone From Checkout Form' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_middle_name', true ) . '</p>';
-	echo '<p><strong>' . __( 'Fax From Checkout Form' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_fax', true ) . '</p>';
+	echo '<p><strong>' . __( 'Mobile Phone' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_mobile', true ) . '</p>';
+	echo '<p><strong>' . __( 'Title' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_title', true ) . '</p>';
+	echo '<p><strong>' . __( 'Middle Name' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_middle_name', true ) . '</p>';
+	echo '<p><strong>' . __( 'Fax' ) . ':</strong> ' . get_post_meta( $order->id, '_billing_fax', true ) . '</p>';
 }
 
 add_action( 'woocommerce_admin_order_data_after_shipping_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
@@ -350,7 +362,7 @@ function similar_products() {
 	<?php
 }
 
-add_action( 'woocommerce_product_thumbnails', 'similar_products' );
+//add_action( 'woocommerce_product_thumbnails', 'similar_products' );
 
 
 function single_web_id() {
@@ -383,3 +395,26 @@ function single_brand() {
 add_action( 'woocommerce_single_product_summary', 'single_brand', 31 );
 /**********************SINGLE PRODUCT***********************/
 
+/************************WISHLIST***************************/
+
+function wishlist_wrapper_start() {
+	?>
+    <section id="wishlist">
+    <div class="container">
+    <div class="row">
+	<?php
+}
+
+add_action( 'yith_wcwl_before_wishlist_form', 'wishlist_wrapper_start' );
+
+function wishlist_wrapper_end() {
+	?>
+    </div>
+    </div>
+    </section>
+	<?php
+}
+
+add_action( 'yith_wcwl_after_wishlist_form', 'wishlist_wrapper_end' );
+
+/************************WISHLIST***************************/

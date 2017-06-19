@@ -51,7 +51,76 @@
             </div>
         </div>
     </div>
-    
+
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="single-widget">
+                        <h2>Service</h2>
+						<?php wp_nav_menu( array(
+							'theme_location'  => 'footer-services',
+							'container'       => '',
+							'container_class' => '',
+							'container_id'    => '',
+							'menu_class'      => 'nav nav-pills nav-stacked',
+							'menu_id'         => '',
+							'echo'            => true,
+						) ); ?>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="single-widget">
+                        <h2>Quock Shop</h2>
+						<?php wp_nav_menu( array(
+							'theme_location'  => 'footer-quick',
+							'container'       => '',
+							'container_class' => '',
+							'container_id'    => '',
+							'menu_class'      => 'nav nav-pills nav-stacked',
+							'menu_id'         => '',
+							'echo'            => true,
+						) ); ?>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="single-widget">
+                        <h2>Policies</h2>
+						<?php wp_nav_menu( array(
+							'theme_location'  => 'footer-policies',
+							'container'       => '',
+							'container_class' => '',
+							'container_id'    => '',
+							'menu_class'      => 'nav nav-pills nav-stacked',
+							'menu_id'         => '',
+							'echo'            => true,
+						) ); ?>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="single-widget">
+                        <h2>About Shopper</h2>
+						<?php wp_nav_menu( array(
+							'theme_location'  => 'footer-about',
+							'container'       => '',
+							'container_class' => '',
+							'container_id'    => '',
+							'menu_class'      => 'nav nav-pills nav-stacked',
+							'menu_id'         => '',
+							'echo'            => true,
+						) ); ?>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-sm-offset-1">
+                    <div class="single-widget">
+                        <h2>About Shopper</h2>
+						<?php echo do_shortcode( '[newsletter_form form="1"]' ) ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <div class="footer-bottom">
         <div class="container">

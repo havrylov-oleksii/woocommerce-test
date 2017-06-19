@@ -22,8 +22,14 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+							<?php $phone = get_field( 'phone_number', 'option' ); ?>
+							<?php $email = get_field( 'email', 'option' ); ?>
+							<?php if ( isset( $phone ) ): ?>
+                                <li><a href="#"><i class="fa fa-phone"></i> <?php echo $phone; ?> </a></li>
+							<?php endif; ?>
+							<?php if ( isset( $email ) ): ?>
+                                <li><a href="#"><i class="fa fa-envelope"></i> <?php echo $email; ?> </a></li>
+							<?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -49,29 +55,6 @@
                     <div class="logo pull-left">
                         <a href="<?php echo home_url(); ?>"><img
                                     src="<?php bloginfo( 'template_url' ); ?>/assets/images/home/logo.png" alt=""/></a>
-                    </div>
-                    <div class="btn-group pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                USA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canada</a></li>
-                                <li><a href="#">UK</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                DOLLAR
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canadian Dollar</a></li>
-                                <li><a href="#">Pound</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="col-sm-8">
